@@ -13,5 +13,5 @@ services:
     networks:
       - net-bridge
 networks:
-  netbridge:
+  net-bridge:
     external: true
