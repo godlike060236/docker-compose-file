@@ -10,8 +10,8 @@ services:
     volumes:
       - '/root/vertex:/vertex'
     container_name: vertex
-  networks:
-    - net-bridge
+    networks:
+      - net-bridge
 networks:
   netbridge:
     external: true
