@@ -14,7 +14,7 @@ services:
       TZ: Asia/Shanghai
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./:/dpanel # 将 /home/dpanel 更改为你想要挂载的宿主机目录
+      - /root/dpanel:/dpanel # 将 /home/dpanel 更改为你想要挂载的宿主机目录
       - /root/dpanel/docker-compose.yml:/root/dpanel/docker-compose.yml
     networks:
       - net-bridge
