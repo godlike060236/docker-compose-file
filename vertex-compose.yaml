@@ -6,7 +6,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     ports:
-      - '${port}:3000'
+      - '${webport}:3000'
     volumes:
       - '/root/vertex:/vertex'
     container_name: vertex
