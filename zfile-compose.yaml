@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  zfile:
+    container_name: zfile
+    restart: always
+    ports:
+      - '8080:8080'
+    volumes:
+      - '/root/zfile/db:/root/.zfile-v4/db'
+      - '/root/zfile/logs:/root/.zfile-v4/logs'
+      - '/root:/data/file'
+  image: zhaojun1998/zfile:latest
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+networks:
+  net-bridge:
+    external: true
