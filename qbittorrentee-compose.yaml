@@ -8,7 +8,7 @@ services:
       - PGID=0
       - TZ=Asia/Shanghai
     volumes:
-      - ./config:/config
+      - /root/qbittorrent/config:/config
       - /root/downloads:/downloads
     ports:
       - 6881:6881
