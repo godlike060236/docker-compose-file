@@ -9,7 +9,7 @@ services:
     container_name: nginx-proxy-manager
     volumes:
       - /root/nginx-proxy-manager/data:/data
-      - /etc/letsencrypt:/etc/letsencrypt
+      - /root/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
     networks:
       - net-bridge
     environment:
