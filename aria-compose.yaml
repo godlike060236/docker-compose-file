@@ -7,7 +7,7 @@ services:
       - PUID=0
       - PGID=0
       - UMASK_SET=022
-      - RPC_SECRET=taikong
+      - RPC_SECRET=guo1015666...
       - RPC_PORT=6800
       - LISTEN_PORT=6888
       - DISK_CACHE=64M
