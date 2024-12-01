@@ -1,6 +1,6 @@
 services:
   app:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: 'chishin/nginx-proxy-manager-zh:release'
     restart: unless-stopped
     ports:
       - '80:80'
@@ -12,6 +12,8 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
     networks:
       - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
 networks:
   net-bridge:
     external: true
