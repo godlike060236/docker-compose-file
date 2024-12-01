@@ -7,7 +7,7 @@ services:
     volumes:
       - /root/peerbanhelper:/app/data
     ports:
-      - "9898:9898"
+      - "${webport}:9898"
     environment:
       - PUID=0
       - PGID=0
