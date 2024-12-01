@@ -9,7 +9,7 @@ services:
       - '/root/zfile/db:/root/.zfile-v4/db'
       - '/root/zfile/logs:/root/.zfile-v4/logs'
       - '/root:/data/file'
-  image: zhaojun1998/zfile:latest
+    image: zhaojun1998/zfile:latest
     networks:
       - net-bridge
     environment:
