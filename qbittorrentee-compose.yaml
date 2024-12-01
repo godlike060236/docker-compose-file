@@ -9,6 +9,7 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /root/qbittorrent/config:/config
+      - /root/qbittorrent/theme:/theme
       - /root/downloads:/downloads
     ports:
       - 6881:6881
