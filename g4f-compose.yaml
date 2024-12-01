@@ -10,13 +10,14 @@ services:
     volumes:
       - /root/g4f:/app
     ports:
-      - '${webport}:8080'
+      - '8080:8080'
       - '1337:1337'
       - '7900:7900'
     networks:
       - net-bridge
     environment:
       - TZ=Asia/Shanghai
+      - OLLAMA_HOST=host.docker.internal
 networks:
   net-bridge:
     external: true
