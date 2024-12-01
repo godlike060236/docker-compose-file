@@ -1,24 +1,22 @@
 version: '3'
 services:
-  g4f-gui:
-    container_name: g4f-gui
-    image: hlohaus789/g4f:slim
+  gpt4free:
+    image: hlohaus789/g4f:latest
+    container_name: "g4f"
+    shm_size: 2gb
     build:
       context: .
-      dockerfile: docker/Dockerfile-slim
-    command: python -m g4f.cli gui -debug
+      dockerfile: docker/Dockerfile
     volumes:
-      - .:/app
+      - /root/g4f:/app
     ports:
-      - '8080:8080'
-  g4f-api:
-    container_name: g4f-api
-    image: hlohaus789/g4f:slim
-    build:
-      context: .
-      dockerfile: docker/Dockerfile-slim
-    command: python -m g4f.cli api
-    volumes:
-      - .:/app
-    ports:
+      - '${webport}:8080'
       - '1337:1337'
+      - '7900:7900'
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+networks:
+  net-bridge:
+    external: true
