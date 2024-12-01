@@ -4,7 +4,7 @@ services:
     container_name: zfile
     restart: always
     ports:
-      - '8080:8080'
+      - '${webport}:8080'
     volumes:
       - '/root/zfile/db:/root/.zfile-v4/db'
       - '/root/zfile/logs:/root/.zfile-v4/logs'
