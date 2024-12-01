@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     ports:
       - '${webport}:80'
-    image: 'corentinth/it-tools:latest'
+    image: 'qingfeng2336/it-tools:latest'
     environment:
       - TZ=Asia/Shanghai
     networks:
