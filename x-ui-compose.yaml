@@ -1,0 +1,15 @@
+services:
+  xui:
+    image: enwaiax/x-ui:alpha-zh
+    container_name: xui
+    volumes:
+      - /root/x-ui/db/:/etc/x-ui/
+      - /root/x-ui/cert/:/root/cert/
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
