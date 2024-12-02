@@ -18,4 +18,5 @@ services:
     security_opt:
       - apparmor:unconfined
     image: rclone/rclone
-    command: mount alist: /root/alist-mount
+    restart: unless-stopped
+    command: "mount alist: /root/alist-mount"
