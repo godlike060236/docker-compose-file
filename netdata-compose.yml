@@ -12,6 +12,8 @@ services:
       - SYS_ADMIN
     security_opt:
       - apparmor:unconfined
+    ports:
+      - '${webport}:19999'
     volumes:
       - /root/netdata/config:/etc/netdata
       - /root/netdata/lib:/var/lib/netdata
