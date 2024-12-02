@@ -6,6 +6,8 @@ services:
     pid: host
     network_mode: host
     restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
     cap_add:
       - SYS_PTRACE
       - SYS_ADMIN
