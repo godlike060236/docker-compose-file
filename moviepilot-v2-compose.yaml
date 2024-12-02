@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  moviepilot:
+    stdin_open: true
+    tty: true
+    container_name: moviepilotv2
+    hostname: moviepilotv2
+    ports:
+      - '${webport}:3000'
+      - '3001:3001'
+    volumes:
+      - '/root/downloads:/downloads'
+      - '/root/moviepilot-v2/config:/config'
+      - '/root/moviepilot-v2/core:/moviepilot/.cache/ms-playwright'
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - '/root/cd2/mnt/123网盘/Emby:/Emby'
+    environment:
+      - 'PUID=0'
+      - 'PGID=0'
+      - 'UMASK=000'
+      - 'TZ=Asia/Shanghai'
+      - 'AUTH_SITE=iyuu'
+      - 'IYUU_SIGN=IYUU4338Ta698600be53e28eeb1db11eebc2cfb70fd0446c3'
+      - 'SUPERUSER=admin'
+      # - 'API_TOKEN=无需手动配置，系统会自动生成。如果需要自定义配置，必须为16位以上的复杂字符串'
+    restart: always
+    image: jxxghp/moviepilot-v2:latest
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
