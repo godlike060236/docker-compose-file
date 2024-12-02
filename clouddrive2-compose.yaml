@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+  cloudnas:
+    image: cloudnas/clouddrive2
+    container_name: clouddrive2
+    environment:
+      - TZ=Asia/Shanghai
+      - CLOUDDRIVE_HOME=/Config
+    volumes:
+      - /root/cd2/mnt:/CloudNAS:shared
+      - /root/cd2/config:/Config
+    devices:
+      - /dev/fuse:/dev/fuse
+    restart: unless-stopped
+    pid: "host"
+    privileged: true
+    networks: net-bridge
+    ports:
+      - ${webport}:19798
+networks:
+  net-bridge:
+    external: true
