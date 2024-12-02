@@ -15,7 +15,6 @@ services:
     restart: unless-stopped
     networks:
       - net-bridge
-    restart: unless-stopped
 networks:
   net-bridge:
     external: true
