@@ -1,0 +1,16 @@
+services:
+  beszel:
+    image: 'henrygd/beszel'
+    container_name: 'beszel'
+    restart: unless-stopped
+    ports:
+      - '${webport}:8090'
+    volumes:
+      - /root/beszel/data:/beszel_data
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+networks:
+  net-bridge:
+    external: true
