@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  rclone:
+    container_name: "rclone"
+    volumes:
+      - ~/.config/rclone:/config/rclone
+      - /root/rclone/data:/data:shared
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Shanghai
+    devices:
+      - /dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    image: rclone/rclone
+    command: mount alist: /root/alist-mount
