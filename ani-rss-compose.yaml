@@ -1,0 +1,20 @@
+version: "3"
+services:
+  ani-rss:
+    container_name: ani-rss
+    volumes:
+      - /root/ani-rss/config:/config
+      - /root/downloads:/downloads
+    ports:
+      - ${webport}:7789
+    environment:
+      - PORT=7789
+      - CONFIG=/config
+      - TZ=Asia/Shanghai
+    restart: always
+    image: wushuo894/ani-rss
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
