@@ -11,11 +11,7 @@ services:
       - net-bridge
     environment:
       - TZ=Asia/Shanghai
-networks:
-  net-bridge:
-    external: true
-
-services:
+      
   beszel-agent:
     image: "henrygd/beszel-agent"
     container_name: "beszel-agent"
