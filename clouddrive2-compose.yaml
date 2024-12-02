@@ -14,7 +14,8 @@ services:
     restart: unless-stopped
     pid: "host"
     privileged: true
-    networks: net-bridge
+    networks: 
+      - net-bridge
     ports:
       - ${webport}:19798
 networks:
