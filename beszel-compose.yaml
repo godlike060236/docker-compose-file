@@ -11,21 +11,6 @@ services:
       - net-bridge
     environment:
       - TZ=Asia/Shanghai
-      
-  beszel-agent:
-    image: "henrygd/beszel-agent"
-    container_name: "beszel-agent"
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      # monitor other disks / partitions by mounting a folder in /extra-filesystems
-      # - /mnt/disk/.beszel:/extra-filesystems/sda1:ro
-    environment:
-      PORT: 45876
-      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAQ/c+pzPKVD15wl8NH3pdA6ceD8AvTtFLOoVftpTCXb"
-      TZ: Asia/Shanghai
-    networks:
-      - net-bridge
 networks:
   net-bridge:
     external: true
