@@ -10,6 +10,8 @@ services:
       - TZ=Asia/Shanghai
     networks:
       - net-bridge
+    ports:
+      - "${webport}:54321"
 networks:
   net-bridge:
     external: true
