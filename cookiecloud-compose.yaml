@@ -1,0 +1,17 @@
+version: '3'
+services:
+  cookiecloud:
+    image: easychen/cookiecloud:latest
+    container_name: cookiecloud
+    restart: always
+    volumes:
+      - /root/cookiecloud/data:/data/api/data
+    ports:
+      - ${webport}:8088
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+networks:
+  net-bridge:
+    external: true
