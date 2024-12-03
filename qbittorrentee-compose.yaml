@@ -1,8 +1,8 @@
 version: "2"
 services:
   qbittorrentee:
-    image: superng6/qbittorrentee:4.6.6.10
-    container_name: qbittorrentee
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
     environment:
       - PUID=0
       - PGID=0
