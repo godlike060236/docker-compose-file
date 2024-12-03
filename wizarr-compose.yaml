@@ -1,0 +1,16 @@
+services:
+  wizarr:
+    container_name: wizarr
+    image: ghcr.io/wizarrrr/wizarr:latest
+    ports:
+      - ${webport}:5690
+    volumes:
+      - /root/wizarr/database:/data/database
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+    restart: always
+networks:
+  net-bridge:
+    external: true
