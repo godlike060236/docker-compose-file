@@ -2,7 +2,7 @@ version: '3'
 services:
   emby:
     image: amilys/embyserver:latest  # 使用最新版本的 lovechen/embyserver 镜像
-    container_name: emby             # 容器名称设置为 emby
+    container_name: embyMain             # 容器名称设置为 emby
     restart: always                    # 容器总是重新启动
     ports:
       - '${httpport}:8096'                   # 将容器的 8096 端口映射到主机的 8096 端口
@@ -10,7 +10,7 @@ services:
       - '1900:1900/udp'               # 将容器的 1900 UDP 端口映射到主机的 1900 UDP 端口
       - '7359:7359/udp'               # 将容器的 7359 UDP 端口映射到主机的 7359 UDP 端口
     volumes:
-      - /root/emby/config:/config              # 将主机上的 ./config 目录挂载到容器的 /config
+      - /root/embymain/config:/config              # 将主机上的 ./config 目录挂载到容器的 /config
       - /root/cd2/mnt/115网盘/Emby:/root/cd2/mnt/115网盘/Emby:rslave      # 将主机上的 /pt/downloads/link 目录挂载到容器的 /data
       - /root/strm:/strm
       - /etc/timezone:/etc/timezone   # 同步主机和容器的时区设置
