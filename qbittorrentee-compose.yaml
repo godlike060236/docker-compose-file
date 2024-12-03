@@ -12,8 +12,8 @@ services:
       - /root/qbittorrent/theme:/theme
       - /root/downloads:/downloads
     ports:
-      - 6881:6881
-      - 6881:6881/udp
+      - 50103:50103
+      - 50103:50103/udp
       - ${webport}:8080
     networks:
       - net-bridge
