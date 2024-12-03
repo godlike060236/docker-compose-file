@@ -9,7 +9,7 @@ services:
     ports:
       - ${webport}:80
     environment:
-      - DOMAIN=https://vaultwarden.taikong.co # 这是您希望与您的Vaultwarden实例关联的域名。
+      - DOMAIN=https://vaultwarden.taikong.de # 这是您希望与您的Vaultwarden实例关联的域名。
       - LOGIN_RATELIMIT_MAX_BURST=10 # 允许在一阵登录/两步验证尝试中的最大请求次数。
       - LOGIN_RATELIMIT_SECONDS=60 # 这是来自同一IP的登录请求之间的平均秒数，在Vaultwarden限制登录次数之前。
       - ADMIN_RATELIMIT_MAX_BURST=10 # 这与LOGIN_RATELIMIT_MAX_BURST相同，只争对admin面板。
