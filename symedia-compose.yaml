@@ -13,7 +13,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro     # Docker 宿主机通信
     environment:
       TZ: Asia/Shanghai             # 容器时区
-      LICENSE_KEY: bhwcUgBW2VRcFrIEzvNlzJWJ4TeAvhUGK8ztKkCmPofh5bvWITtVQqS01XUrbM1jIQiwHc7UknpoQeBnN5ticQxyEX7BlWRrvPMp35Zfe8otxzU5BaFEGK+SY4tZpnp/5qmhOwE3li41E8r0HBrwZBAZmL0Nn22ThejiddEPTB0DMbm1QZ4wgKqO6wzv+ClE               # 激活码
+      LICENSE_KEY: ${activecode}               # 激活码
     networks:
       - net-bridge
 networks:
