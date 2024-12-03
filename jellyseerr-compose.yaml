@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-    jellyseerr:
+  jellyseerr:
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr
     environment:
