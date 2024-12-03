@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  fastemby:
+    image: 'shenxianmq/fastemby:latest'
+    volumes:
+      - '/root/fastemby/log:/app/log'
+      - '/root/fastemby/config:/app/config'
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: fastemby
+    networks:
+      - net-bridge
+    restart: always
+networks:
+  net-bridge:
+    external: true
