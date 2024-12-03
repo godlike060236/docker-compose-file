@@ -7,7 +7,7 @@ services:
     ports:
       - "${webport}:8095"                   # 映射端口：主机 8095 -> 容器 8095
     volumes:
-      - /root/cd2/mnt:/CloudNAS:rslave  # cd2映射路径
+      - /root/cd2/mnt:/root/cd2/mnt:rslave  # cd2映射路径
       - /root/strm:/media                       # 本地媒体目录
       - /root/symedia/config:/app/config  # sa配置文件夹
       - /var/run/docker.sock:/var/run/docker.sock:ro     # Docker 宿主机通信
