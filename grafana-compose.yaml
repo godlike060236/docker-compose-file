@@ -18,7 +18,7 @@ services:
     image: grafana/loki:2.9.2
     container_name: loki
     volumes:
-     - /root/loki:/root/loki
+      - /root/loki:/root/loki
     ports:
       - "${lokiport}:3100"
     command: -config.file=/root/loki/local-config.yaml
