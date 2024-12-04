@@ -3,8 +3,6 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    depends_on:
-      - renderer
       - prometheus
     ports:
       - ${grafanawebport}:3000
@@ -13,7 +11,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /root/grafana/:/var/lib/grafana
+      - /root/grafana:/var/lib/grafana
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
