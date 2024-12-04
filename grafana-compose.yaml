@@ -15,6 +15,7 @@ services:
   loki:
     image: grafana/loki:2.9.2
     container_name: loki
+    privileged: true
     volumes:
       - /root/loki:/etc/loki
     ports:
