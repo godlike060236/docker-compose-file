@@ -9,7 +9,7 @@ services:
     volumes:
       - /root/cd2/mnt:/root/cd2/mnt:rslave  # cd2映射路径
       - /root/strm:/media                       # 本地媒体目录
-      - /root/strm:/mediabackup
+      - /root/strmbackup:/mediabackup
       - /root/symedia/config:/app/config  # sa配置文件夹
       - /var/run/docker.sock:/var/run/docker.sock:ro     # Docker 宿主机通信
     environment:
