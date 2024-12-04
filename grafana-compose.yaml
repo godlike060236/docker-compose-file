@@ -11,6 +11,7 @@ services:
       - net-bridge
     environment:
       - TZ=Asia/Shanghai
+    restart: always
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
@@ -21,7 +22,7 @@ services:
       - '--path.rootfs=/host'
     network_mode: host
     pid: host
-    restart: unless-stopped
+    restart: always
     volumes:
       - '/:/host:ro,rslave'
   prometheus:
@@ -38,6 +39,25 @@ services:
     volumes:
       - /root/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml
     command: --config.file=/etc/prometheus/prometheus.yml
+  cadvisor:
+    image: 'gcr.io/cadvisor/cadvisor:latest'
+    devices:
+      - /dev/kmsg
+    privileged: true
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: cadvisor
+    ports:
+      - '${cadvisorport}:8080'
+    volumes:
+      - '/dev/disk/:/dev/disk:ro'
+      - '/var/lib/docker/:/var/lib/docker:ro'
+      - '/sys:/sys:ro'
+      - '/var/run:/var/run:ro'
+      - '/:/rootfs:ro'
+    restart: always
 networks:
   net-bridge:
     external: true
