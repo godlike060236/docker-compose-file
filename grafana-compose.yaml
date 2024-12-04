@@ -4,7 +4,7 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     volumes:
-     - /root/grafana:/var/lib/grafana
+      - /root/grafana:/var/lib/grafana
     depends_on:
       - prometheus
     ports:
