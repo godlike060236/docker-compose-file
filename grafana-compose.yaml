@@ -3,8 +3,6 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
-    volumes:
-      - /root/grafana:/var/lib/grafana
     depends_on:
       - prometheus
     ports:
@@ -18,10 +16,10 @@ services:
     image: grafana/loki:2.9.2
     container_name: loki
     volumes:
-      - /root/loki:/root/loki
+      - /root/loki/local-config.yaml:/etc/loki/local-config.yaml
     ports:
       - "${lokiport}:3100"
-    command: -config.file=/root/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml
     environment:
       - TZ=Asia/Shanghai
     networks:
@@ -32,8 +30,8 @@ services:
     container_name: lpg-promtail
     volumes:
       - /var/log:/var/log
-      - /root/promtail:/root/promtail
-    command: -config.file=/root/promtail/promtail.yml
+      - /root/promtail/promtail.yml:/etc/promtail/promtail.yml
+    command: -config.file=/etc/promtail/promtail.yml
     environment:
       - TZ=Asia/Shanghai
     networks:
