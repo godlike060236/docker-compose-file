@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  pingvin-share:
+    image: stonith404/pingvin-share:latest
+    restart: unless-stopped
+    container_name: 'pingvinshare'
+    ports:
+      - ${webport}:3000     # 8080可以改成服务器上未被使用的端口
+    volumes:
+      - "/root/pingvinshare/data:/opt/app/backend/data"
+      - "/root/pingvinshare/data/images:/opt/app/frontend/public/img"
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+networks:
+  net-bridge:
+    external: true
