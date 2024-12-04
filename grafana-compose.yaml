@@ -12,6 +12,28 @@ services:
     environment:
       - TZ=Asia/Shanghai
     restart: always
+  loki:
+    image: grafana/loki:2.9.2
+    container_name: loki
+    ports:
+      - "${lokiport}:3100"
+    command: -config.file=/root/loki/local-config.yaml
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - net-bridge
+    restart: always
+  promtail:
+    image: grafana/promtail
+    container_name: lpg-promtail
+    volumes:
+      - /var/log:/var/log
+    command: -config.file=/root/promtail/promtail.yml
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - net-bridge
+    restart: always
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
     container_name: node_exporter
