@@ -1,0 +1,46 @@
+version: '3.3'
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    depends_on:
+      - renderer
+      - prometheus
+    ports:
+      - ${grafanawebport}:3000
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /root/grafana/:/var/lib/grafana
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    hostname: node_exporter
+    environment:
+      - TZ=Asia/Shanghai
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+  prometheus:
+    image: prom/prometheus:v2.26.0
+    restart: always
+    container_name:  prometheus
+    hostname:  prometheus
+    networks:
+      - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - ${prometheusport}:9090
+    volumes:
+      - /root/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: --config.file=/etc/prometheus/prometheus.yml
+networks:
+  net-bridge:
+    external: true
