@@ -17,10 +17,10 @@ services:
     container_name: loki
     privileged: true
     volumes:
-      - /root/loki:/root/loki
+      - /root/loki:/etc/loki
     ports:
       - "${lokiport}:3100"
-    command: -config.file=/root/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml
     environment:
       - TZ=Asia/Shanghai
     networks:
