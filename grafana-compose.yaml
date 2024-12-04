@@ -3,6 +3,7 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    depends_on:
       - prometheus
     ports:
       - ${grafanawebport}:3000
