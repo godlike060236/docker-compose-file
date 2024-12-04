@@ -16,7 +16,7 @@ services:
     image: grafana/loki:2.9.2
     container_name: loki
     volumes:
-      - /root/loki/local-config.yaml:/etc/loki/local-config.yaml
+      - /root/loki:/etc/loki
     ports:
       - "${lokiport}:3100"
     command: -config.file=/etc/loki/local-config.yaml
@@ -27,7 +27,7 @@ services:
     restart: always
   promtail:
     image: grafana/promtail
-    container_name: lpg-promtail
+    container_name: promtail
     volumes:
       - /var/log:/var/log
       - /root/promtail/promtail.yml:/etc/promtail/promtail.yml
