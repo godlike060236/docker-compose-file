@@ -1,0 +1,17 @@
+services:
+  linkding:
+    container_name: "linkding"
+    image: sissbruecker/linkding:latest
+    ports:
+      - "${webport}:9090"
+    volumes:
+      - "/root/linkding:/etc/linkding/data"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
+    restart: always
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
