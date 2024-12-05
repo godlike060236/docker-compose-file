@@ -12,6 +12,7 @@ services:
       - CONFIG=/config
       - TZ=Asia/Shanghai
     image: wushuo894/ani-rss
+    restart: always
     networks:
       - net-bridge
 networks:
