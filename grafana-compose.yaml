@@ -29,8 +29,8 @@ services:
   promtail:
     image: grafana/promtail
     container_name: promtail
-    #volumes:
-      #- /var/log:/var/log
+    volumes:
+      - /root/nginx-proxy-manager/data/logs:/var/log
       #- /root/promtail/promtail.yml:/etc/promtail/promtail.yml
     command: -config.file=/etc/promtail/config.yml
     environment:
