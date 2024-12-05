@@ -13,7 +13,7 @@ services:
       - '/root/moviepilot-v2/config:/config'
       - '/root/moviepilot-v2/core:/moviepilot/.cache/ms-playwright'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - '/root/cd2/mnt/115网盘/Emby:/Emby'
+      - '/root/cd2/mnt/123网盘/Emby:/Emby'
     environment:
       - 'PUID=0'
       - 'PGID=0'
