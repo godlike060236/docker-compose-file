@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mysql:                                            #mysql服务节点
+    image: mysql:5.7                                #mysql镜像，如果镜像容器没有会去自动拉取
+    container_name: mysql                           #容器的名称
+    command:                                        #构建容器后所执行的命令
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --lower-case-table-names=1    #忽略数据表明大小写 
+    restart: always                                 #跟随docker的启动而启动
+    environment:
+      MYSQL_ROOT_PASSWORD: root                     #设置root帐号密码
+    ports:
+      - 3306:3306
+    volumes:
+      - /root/mysql/data:/var/lib/mysql           #数据文件挂载
+      - /root/mysql/conf.d:/etc/mysql/conf.d      #配置文件挂载
+      - /root/mysql/log:/var/log/mysql            #日志文件挂载
+    environment:
+      TZ: Asia/Shanghai
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
