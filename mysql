@@ -10,14 +10,13 @@ services:
     restart: always                                 #跟随docker的启动而启动
     environment:
       MYSQL_ROOT_PASSWORD: root                     #设置root帐号密码
+      TZ: Asia/Shanghai
     ports:
       - 3306:3306
     volumes:
       - /root/mysql/data:/var/lib/mysql           #数据文件挂载
       - /root/mysql/conf.d:/etc/mysql/conf.d      #配置文件挂载
       - /root/mysql/log:/var/log/mysql            #日志文件挂载
-    environment:
-      TZ: Asia/Shanghai
     networks:
       - net-bridge
 networks:
