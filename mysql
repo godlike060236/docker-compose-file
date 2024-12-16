@@ -9,10 +9,10 @@ services:
       --lower-case-table-names=1    #忽略数据表明大小写 
     restart: always                                 #跟随docker的启动而启动
     environment:
-      MYSQL_ROOT_PASSWORD: root                     #设置root帐号密码
+      MYSQL_ROOT_PASSWORD: ${password}                     #设置root帐号密码
       TZ: Asia/Shanghai
     ports:
-      - 3306:3306
+      - ${mysqlport}:3306
     volumes:
       - /root/mysql/data:/var/lib/mysql           #数据文件挂载
       - /root/mysql/conf.d:/etc/mysql/conf.d      #配置文件挂载
