@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  emby-controller:
+    image: ranjie/emby-controller:latest
+    container_name: "embycontroller"
+    restart: unless-stopped
+    env_file:
+      - /root/embycontroller/.env
+    volumes:
+      - /root/embycontroller/.env:/var/www/html/.env
+    ports:
+      - "${webport}:8018"
+    environment:
+      TZ: Asia/Shanghai
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
