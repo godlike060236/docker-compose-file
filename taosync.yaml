@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  tao-sync:
+    image: 'dr34m/tao-sync:latest'
+    container_name: taoSync
+    volumes:
+      - '/root/taosync:/app/data'
+    ports:
+      - '${webport}:8023'
+    restart: always
+    networks:
+      - net-bridge
+    environment:
+      TZ: Asia/Shanghai
+networks:
+  net-bridge:
+    external: true
