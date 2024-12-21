@@ -13,7 +13,7 @@ services:
       - TZ=Asia/Shanghai  # 时区
       - UMASK=022         # 权限掩码
     restart: always
-    network_mode: bridge
+    network_mode: net-bridge
     container_name: chinesesubfinder
     ports:
       - ${webport}:19035  # 从0.20.0版本开始，通过webui来设置
