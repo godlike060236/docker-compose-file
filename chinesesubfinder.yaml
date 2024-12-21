@@ -19,10 +19,6 @@ services:
     ports:
       - ${webport}:19035  # 从0.20.0版本开始，通过webui来设置
       - 19037:19037  # webui 的视频列表读取图片用，务必设置不要暴露到外网
-    logging:
-        driver: "json-file"
-        options:
-          max-size: "50m" # 限制docker控制台日志大小，可自行调整
 networks:
   net-bridge:
     external: true
