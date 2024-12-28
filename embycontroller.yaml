@@ -6,9 +6,9 @@ services:
     container_name: "embycontroller"
     restart: unless-stopped
     env_file:
-      - /root/embycontroller/.env
+      - /root/embycontroller/docker.env
     volumes:
-      - /root/embycontroller/.env:/var/www/html/.env
+      - /root/embycontroller/docker.env:/var/www/html/.env
     ports:
       - "${webport}:8018"
     environment:
