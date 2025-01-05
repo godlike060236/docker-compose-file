@@ -12,8 +12,8 @@ services:
       - /root/qbittorrentSpeed/theme:/theme
       - /root/downloads:/downloads
     ports:
-      - 50104:50103
-      - 50104:50103/udp
+      - 41256:41256
+      - 41256:41256/udp
       - ${webport}:8080
     networks:
       - net-bridge
