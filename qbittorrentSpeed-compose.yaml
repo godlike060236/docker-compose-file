@@ -7,6 +7,7 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Asia/Shanghai
+      - WEBUI_PORT=8081
     volumes:
       - /root/qbittorrentSpeed/config:/config
       - /root/qbittorrentSpeed/theme:/theme
