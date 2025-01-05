@@ -14,7 +14,7 @@ services:
     ports:
       - 41256:41256
       - 41256:41256/udp
-      - ${webport}:8080
+      - 1233:1233
     networks:
       - net-bridge
     restart: unless-stopped
