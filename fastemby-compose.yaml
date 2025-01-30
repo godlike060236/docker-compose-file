@@ -11,6 +11,8 @@ services:
     networks:
       - net-bridge
     restart: always
+    ports:
+      - ${webport}:15895
 networks:
   net-bridge:
     external: true
