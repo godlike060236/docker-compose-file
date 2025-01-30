@@ -2,7 +2,7 @@ version: '3'
 services:
   emby:
     image: amilys/embyserver:latest  # 使用最新版本的 lovechen/embyserver 镜像
-    container_name: embyMain             # 容器名称设置为 emby
+    container_name: embymain             # 容器名称设置为 emby
     restart: always                    # 容器总是重新启动
     ports:
       - '${httpport}:8096'                   # 将容器的 8096 端口映射到主机的 8096 端口
