@@ -8,13 +8,5 @@ services:
     environment:
       - TZ=Asia/Shanghai
     container_name: fastemby
-    networks:
-      - net-bridge
     restart: always
-    ports:
-      - ${webport}:15895
-      - 3030:3030
-      - 8098:8098
-networks:
-  net-bridge:
-    external: true
+    network_mode: host
