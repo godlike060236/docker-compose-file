@@ -30,8 +30,8 @@ services:
 networks:
   - net-bridge
 volumes:
-  postgres-data: /root/postgres
-  jellystat-backup-data: /root/jellystat
+  postgres-data: '/root/postgres'
+  jellystat-backup-data: '/root/jellystat'
 logging:
   driver: loki
   options:
