@@ -64,7 +64,9 @@ services:
       - ${prometheusport}:9090
     volumes:
       - /root/prometheus/conf/prometheus.yml:/etc/prometheus/prometheus.yml
-    command: --config.file=/etc/prometheus/prometheus.yml
+    command: 
+    - '--config.file=/etc/prometheus/prometheus.yml'
+    - '--storage.tsdb.retention.time=7d'  # 保留7天数据
   cadvisor:
     image: 'gcr.io/cadvisor/cadvisor:latest'
     devices:
