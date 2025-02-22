@@ -6,32 +6,29 @@ services:
     container_name: jellystat-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: ${user}
+      POSTGRES_PASSWORD: ${password}
     volumes:
-      - 'postgres-data:/var/lib/postgresql/data'
+      - '/root/postgres:/var/lib/postgresql/data'
   jellystat:
     image: 'cyfershepard/jellystat:latest'
     container_name: jellystat
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mypassword
+      POSTGRES_USER: ${user}
+      POSTGRES_PASSWORD: ${password}
       POSTGRES_IP: jellystat-db
       POSTGRES_PORT: 5432
-      JWT_SECRET: my-secret-jwt-key
+      JWT_SECRET: ${jwt-secret}
       TZ: Asia/Shanghai
     volumes:
-      - 'jellystat-backup-data:/app/backend/backup-data'
+      - '/root/jellystat:/app/backend/backup-data'
     ports:
       - '${webport}:3000'
     depends_on:
       - jellystat-db
 networks:
   - net-bridge
-volumes:
-  postgres-data: '/root/postgres'
-  jellystat-backup-data: '/root/jellystat'
 logging:
   driver: loki
   options:
