@@ -28,7 +28,8 @@ services:
     depends_on:
       - jellystat-db
 networks:
-  - net-bridge
+  net-bridge:
+    external: true
 logging:
   driver: loki
   options:
