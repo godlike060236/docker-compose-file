@@ -7,8 +7,8 @@ services:
     ports:
       - '${httpport}:8096'                   # 将容器的 8096 端口映射到主机的 8096 端口
       - '${httpsport}:8920'                   # 将容器的 8920 端口映射到主机的 8920 端口
-      - '1900:1900/udp'               # 将容器的 1900 UDP 端口映射到主机的 1900 UDP 端口
-      - '7359:7359/udp'               # 将容器的 7359 UDP 端口映射到主机的 7359 UDP 端口
+      - '1901:1900/udp'               # 将容器的 1900 UDP 端口映射到主机的 1900 UDP 端口
+      - '7360:7359/udp'               # 将容器的 7359 UDP 端口映射到主机的 7359 UDP 端口
     volumes:
       - /root/embyback/config:/config              # 将主机上的 ./config 目录挂载到容器的 /config
       - /root/cd2/mnt:/CloudNAS:shared      # 将主机上的 /pt/downloads/link 目录挂载到容器的 /data
