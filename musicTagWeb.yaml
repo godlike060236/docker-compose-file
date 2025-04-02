@@ -1,0 +1,20 @@
+version: "2.1"
+
+services:
+  music-tag:
+    image: xhongc/music_tag_web:latest
+    container_name: music-tag-web
+    networks: 
+      - net-bridge
+    ports:
+      - ${webport}:8002
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /root/cd2/mnt:/app/media
+      - /root/musicTagWeb:/app/data
+      - /root/downloads:/app/download
+    restart: always
+networks:
+  net-bridge:
+    external: true
