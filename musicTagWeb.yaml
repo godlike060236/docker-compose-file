@@ -11,7 +11,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /root/cd2/mnt:/app/media
+      - /root/cd2/mnt:/app/webdav:rw
       - /root/musicTagWeb:/app/data
       - /root/downloads:/app/download
     restart: always
