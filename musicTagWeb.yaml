@@ -11,6 +11,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
+      - /root/cd2/mnt/123网盘/Emby/music:/app/media
       - /root/musicTagWeb:/app/data
       - /root/downloads:/app/download
     restart: always
