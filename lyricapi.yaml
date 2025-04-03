@@ -1,0 +1,17 @@
+services:
+  lyricapi:
+    image: hisatri/lyricapi:latest
+    container_name: lyricapi
+    ports:
+      - ${webport}:28883
+    environment:
+      - TZ=Asia/Shanghai
+      - API_AUTH=guo1015666...
+    volumes:
+      - /root/cd2/mnt/123网盘/Emby/music:/music:ro #和Navidrome一致的音乐路径
+    restart: unless-stopped
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
