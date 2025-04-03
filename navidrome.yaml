@@ -1,0 +1,34 @@
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    user: 0:0 #用户id，详细解释见后文
+    ports:
+      - ${webport}:4533 #左侧端口如有冲突，可随意修改
+    volumes:
+      - /root/navidrome:/data #数据路径
+      - /root/strm/music:/music:ro #音乐路径
+    networks:
+      - net-bridge
+    environment:
+      #程序默认语言
+      - ND_DEFAULTLANGUAGE=zh-Hans
+      #启用GRAVATAR头像
+      - ND_ENABLEGRAVATAR=true
+      #关闭转码，如需要转码请设置为true
+      - ND_ENABLETRANSCODINGCONFIG=false
+      #SPOTIFY相关
+      - ND_SPOTIFY_ID=e2a112e2480541c7bb644db99faa3cd7
+      - ND_SPOTIFY_SECRET=612ec80f18a54169b588d76b2f5d1d2d
+      #LAST.FM相关
+      - ND_LASTFM_LANGUAGE=zh
+      - ND_LASTFM_APIKEY=a5c257d7838db01af3d9eeb69c00ce09
+      - ND_LASTFM_SECRET=29c8170f586b5aefefab74f1636b1eaa
+      #PROXY相关
+      # - HTTP_PROXY=http://proxy:port
+      # - HTTPS_PROXY=http://proxy:port
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+networks:
+  net-bridge:
+    external: true
