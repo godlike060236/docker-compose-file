@@ -7,7 +7,7 @@ services:
       - ${webport}:4533 #左侧端口如有冲突，可随意修改
     volumes:
       - /root/navidrome:/data #数据路径
-      - /root/strm/music:/music:ro #音乐路径
+      - /root/cd2/mnt/123网盘/Emby/music:/music:ro #音乐路径
     networks:
       - net-bridge
     environment:
