@@ -14,7 +14,7 @@ services:
     environment:
       TZ: Asia/Shanghai             # 容器时区
       LICENSE_KEY: ${activecode}               # 激活码
-      - COVER_MAKER=True #本次添加
+      COVER_MAKER: True #本次添加
     networks:
       - net-bridge
 networks:
