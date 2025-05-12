@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  autofilm:
+    image: akimio/autofilm
+    volumes:
+      - '/root/autofilm/logs:/logs'
+      - '/root/autofilm/media:/media'
+      - '/root/autofilm/config:/config'
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: autofilm
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
