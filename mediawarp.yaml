@@ -1,0 +1,21 @@
+services:
+  mediawarp:
+    image: akimio/mediawarp:0.1.0
+    container_name: MediaWarp
+    restart: unless-stopped
+    ports:
+      - ${webport}:9000
+    volumes:
+      - /root/mediawarp/config:/config
+      - /root/mediawarp/logs:/logs
+      - /root/mediawarp/static:/static
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+    logging:
+      driver: loki
+      options:
+        loki-url: "http://152.53.134.9:3100/loki/api/v1/push"
+        max-size: "50m"
+        max-file: "15"
+        loki-batch-size: "400"
