@@ -9,7 +9,6 @@ services:
       - /root/mediawarp/config:/config
       - /root/mediawarp/logs:/logs
       - /root/mediawarp/static:/static
-    network_mode: host
     environment:
       - TZ=Asia/Shanghai
     logging:
@@ -19,3 +18,8 @@ services:
         max-size: "50m"
         max-file: "15"
         loki-batch-size: "400"
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
