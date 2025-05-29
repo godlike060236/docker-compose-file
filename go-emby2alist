@@ -1,9 +1,6 @@
 version: '3.1'
 services:
   go-emby2alist:
-    build:
-      context: /root/go-emby2alist
-      dockerfile: Dockerfile
     environment:
       - TZ=Asia/Shanghai
       - GIN_MODE=release
