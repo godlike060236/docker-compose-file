@@ -13,6 +13,7 @@ services:
       - /root/embyback/config:/config              # 将主机上的 ./config 目录挂载到容器的 /config
       - /root/cd2/mnt:/CloudNAS:shared      # 将主机上的 /pt/downloads/link 目录挂载到容器的 /data
       - /root/strm:/strm
+      - /root/strmbackup:/strmbackup
       - /etc/timezone:/etc/timezone   # 同步主机和容器的时区设置
       - /etc/localtime:/etc/localtime # 同步主机和容器的本地时间
     environment:
