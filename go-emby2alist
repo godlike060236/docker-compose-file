@@ -1,6 +1,7 @@
 version: '3.1'
 services:
   go-emby2alist:
+  image: ambitiousjun/go-emby2alist:v1.7.4
     environment:
       - TZ=Asia/Shanghai
       - GIN_MODE=release
