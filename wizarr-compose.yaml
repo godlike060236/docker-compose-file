@@ -2,12 +2,12 @@ services:
   wizarr:
     container_name: wizarr
     image: ghcr.io/wizarrrr/wizarr
-    user: 1000:1000
     ports:
       - ${webport}:5690
     volumes:
       - /root/wizarr/database:/data/database
       - /root/wizarr/wizard:/data/wizard_steps
+      - /root/wizarr/wizard/cache/:/.cache
     networks:
       - net-bridge
     environment:
