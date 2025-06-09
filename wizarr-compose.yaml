@@ -6,10 +6,12 @@ services:
       - ${webport}:5690
     volumes:
       - /root/wizarr/database:/data/database
+      - /root/wizarr/wizard:/data/wizard_steps
     networks:
       - net-bridge
     environment:
       - TZ=Asia/Shanghai
+      - DISABLE_BUILTIN_AUTH=false
     restart: always
 networks:
   net-bridge:
