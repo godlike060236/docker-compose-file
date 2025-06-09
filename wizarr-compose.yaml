@@ -12,8 +12,8 @@ services:
     environment:
       - TZ=Asia/Shanghai
       - DISABLE_BUILTIN_AUTH=false
-      - PUID=0
-      - PGID=0
+      - UID=0
+      - GID=0
     restart: always
 networks:
   net-bridge:
