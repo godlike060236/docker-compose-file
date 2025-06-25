@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   alist:
-    image: 'xhofe/alist:latest'
+    image: 'openlistteam/openlist:latest'
     container_name: alist
     volumes:
       - '/root/alist:/opt/alist/data'
