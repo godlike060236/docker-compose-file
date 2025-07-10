@@ -23,6 +23,6 @@ services:
       - 'UMASK=000'
       - 'TZ=Asia/Shanghai'
       # 用户相关
-      - 'JWT_SECRET={guo1015666...}'
-      - 'USER_NAME={admin}'
-      - 'USER_PASSWORD={guo1015666...}'
+      - 'JWT_SECRET=guo1015666...'
+      - 'USER_NAME=admin'
+      - 'USER_PASSWORD=guo1015666...'
