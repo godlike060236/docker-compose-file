@@ -1,0 +1,28 @@
+networks:
+  media_network:
+    external: true
+
+services:
+  alist2strm:
+    image: mccray/alist2strm:latest
+    container_name: alist2strm
+    restart: unless-stopped
+    networks:
+      - media_network
+    ports:
+      - "3456:80"   # 前端访问端口
+      - "4567:3210" # 后端API端口
+    volumes:
+      # 数据挂载目录
+      - /share/Docker/data/alist2strm/data:/app/data
+      # 媒体目录
+      - /share/MediaCenter:/media
+    environment:
+      - 'PUID=1000'
+      - 'PGID=0'
+      - 'UMASK=000'
+      - 'TZ=Asia/Shanghai'
+      # 用户相关
+      - 'JWT_SECRET={你的JWT密钥}'
+      - 'USER_NAME={管理员账号}'
+      - 'USER_PASSWORD={管理员密码}'
