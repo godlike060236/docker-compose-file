@@ -9,7 +9,7 @@ services:
     container_name: "nexterm"
     environment:
       - TZ=Asia/Shanghai
-      - ENCRYPTION_KEY="${ENCRYPTION_KEY}"
+      - ENCRYPTION_KEY="222569f5e7c3dee1ec0f18c3729aa7bb7feb309bc2fd2f183dbf9da094292c6c"
     networks:
       - net-bridge
 networks:
