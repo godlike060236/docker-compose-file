@@ -5,10 +5,11 @@ services:
     restart: always
     volumes:
       - /root/nexterm:/app/data
-    image: germannewsmaker/nexterm:1.0.2-OPEN-PREVIEW
+    image: germannewsmaker/nexterm:1.0.5-OPEN-PREVIEW
     container_name: "nexterm"
     environment:
       - TZ=Asia/Shanghai
+      - ENCRYPTION_KEY="${ENCRYPTION_KEY}"
     networks:
       - net-bridge
 networks:
