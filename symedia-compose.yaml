@@ -7,7 +7,8 @@ services:
     ports:
       - "${webport}:8095"                   # 映射端口：主机 8095 -> 容器 8095
     volumes:
-      - /root/cd2/mnt:/CloudNAS:shared  # cd2映射路径
+      - /root/cd2/mnt/123网盘:/123网盘:shared  # cd2映射路径
+      #- /root/cd2/mnt:/CloudNAS:shared  # cd2映射路径
       - /root/strm:/strm
       - /root/aliststrm:/aliststrm # 本地媒体目录
       - /root/symedia/config:/app/config  # sa配置文件夹
