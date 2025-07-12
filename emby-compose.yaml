@@ -9,7 +9,7 @@ services:
       - '${httpsport}:8920'                   # 将容器的 8920 端口映射到主机的 8920 端口
     volumes:
       - /root/embymain/config:/config              # 将主机上的 ./config 目录挂载到容器的 /config
-      - /root/cd2/mnt:/CloudNAS:shared      # 将主机上的 /pt/downloads/link 目录挂载到容器的 /data
+      - /root/cd2/mnt/123网盘:/123网盘:shared      # 将主机上的 /pt/downloads/link 目录挂载到容器的 /data
       - /backup/strm:/strm
       - /etc/timezone:/etc/timezone   # 同步主机和容器的时区设置
       - /etc/localtime:/etc/localtime # 同步主机和容器的本地时间
