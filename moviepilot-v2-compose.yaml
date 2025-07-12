@@ -8,7 +8,6 @@ services:
     ports:
       - '${webport}:3000'
       - '3001:3001'
-      - '${mediawarp}:9000'
     volumes:
       - '/root/downloads:/downloads'
       - '/root/moviepilot-v2/config:/config'
