@@ -11,13 +11,6 @@ services:
       - /root/mediawarp/static:/static
     environment:
       - TZ=Asia/Shanghai
-    logging:
-      driver: loki
-      options:
-        loki-url: "http://152.53.134.9:3100/loki/api/v1/push"
-        max-size: "50m"
-        max-file: "15"
-        loki-batch-size: "400"
     networks:
       - net-bridge
 networks:
