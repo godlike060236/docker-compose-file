@@ -10,7 +10,7 @@ services:
       - /root/cd2/mnt/123网盘:/123网盘:shared  # cd2映射路径
       #- /root/cd2/mnt:/CloudNAS:shared  # cd2映射路径
       - /root/strm:/strm
-      - /r2:/aliststrm:shared # 本地媒体目录
+      - /r2:/r2strm:shared # 本地媒体目录
       - /root/symedia/config:/app/config  # sa配置文件夹
       - /var/run/docker.sock:/var/run/docker.sock:ro     # Docker 宿主机通信
     environment:
