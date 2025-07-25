@@ -26,7 +26,7 @@ services:
       - MYSQL_USER=dujiaoka
       - MYSQL_PASSWORD=guo1015666...
     volumes:
-      - ./mysql:/var/lib/mysql
+      - /root/dujiaka/mysql:/var/lib/mysql
     networks:
       - net-bridge
 
@@ -34,7 +34,7 @@ services:
     image: redis:alpine
     restart: always
     volumes:
-      - ./redis:/data
+      - /root/dujiaka/redis:/data
     environment:
       - REDIS_PASSWORD=guo1015666...
     networks:
