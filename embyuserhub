@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  embyuserhub:
+    image: 'mmbao/embyuserhub:latest'
+    ports:
+      - '29045:29045'
+    environment:
+      CRON_MODE: thread
+      ENABLE_SECURITY_ACCESS: True
+      FLASK_SECRET_KEY: ${FLASK_SECRET_KEY}
+      TZ: Asia/Shanghai
+    volumes:
+      - '/root/embyuserhub/config:/app/config'
+      - '/root/embyuserhub/data:/app/data'
+    networks:
+      - net-bridge
+    restart: always
+    container_name: embyuserhub
+networks:
+  net-bridge:
+    external: true
