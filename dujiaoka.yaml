@@ -8,11 +8,11 @@ services:
         - INSTALL=false
         # - MODIFY=true
     volumes:
-      - ./env.conf:/dujiaoka/.env
-      - ./uploads:/dujiaoka/public/uploads
-      - ./storage:/dujiaoka/storage
+      - /root/dujiaka/env.conf:/dujiaoka/.env
+      - /root/dujiaka/uploads:/dujiaoka/public/uploads
+      - /root/dujiaka/storage:/dujiaoka/storage
     ports:
-      - 8090:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
+      - ${webport}:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
     restart: always
     networks:
       - net-bridge
