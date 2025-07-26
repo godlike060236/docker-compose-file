@@ -14,6 +14,8 @@ services:
       - 25:25/tcp
       - 465:465/tcp
       - 993:993/tcp
+    networks:
+      - net-bridge
 
   rainloop:
     image: php:fpm-alpine3.15
@@ -23,3 +25,9 @@ services:
       - /root/rainloop:/var/www/html
     ports:
       - ${webport}:9000
+    networks:
+      - net-bridge
+      
+networks:
+  net-bridge:
+    external: true
