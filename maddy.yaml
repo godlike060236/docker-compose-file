@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+
+  maddy:
+    image: foxcpp/maddy:latest
+    container_name: maddy
+    restart: unless-stopped
+    volumes:
+      - /root/maddy:/data
+      - /root/nginx-proxy-manager/letsencrypt/live/npm-5/fullchain.pem:/data/local_certs/cert.pem:ro
+      - /root/nginx-proxy-manager/letsencrypt/live/npm-5/privkey.pem:/data/local_certs/key.pem:ro
+    ports:
+      - 25:25/tcp
+      - 465:465/tcp
+      - 993:993/tcp
+
+  rainloop:
+    image: php:fpm-alpine3.15
+    container_name: rainloop
+    restart: unless-stopped
+    volumes:
+      - /root/rainloop:/var/www/html
+    ports:
+      - ${webport}:9000
