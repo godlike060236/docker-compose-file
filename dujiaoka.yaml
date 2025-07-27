@@ -13,6 +13,7 @@ services:
       - /root/dujiaka/storage:/dujiaoka/storage
     ports:
       - ${webport}:80         # 8090可以改成任意服务器没有使用过的端口，80不要修改
+      - 465:465
     restart: always
     networks:
       - net-bridge
