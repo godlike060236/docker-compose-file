@@ -13,8 +13,7 @@ services:
       - '/root/moviepilot-v2/config:/config'
       - '/root/moviepilot-v2/core:/moviepilot/.cache/ms-playwright'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      #- '/root/cd2/mnt:/CloudNAS:shared'
-      - '/root/mnt/alist/:/CloudNAS:shared'
+      - '/root/cd2/mnt:/CloudNAS:shared'
     environment:
       - 'PUID=0'
       - 'PGID=0'
