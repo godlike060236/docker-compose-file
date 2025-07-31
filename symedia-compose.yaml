@@ -7,8 +7,8 @@ services:
     ports:
       - "${webport}:8095"                   # 映射端口：主机 8095 -> 容器 8095
     volumes:
-      #- /root/cd2/mnt/123网盘:/123网盘:shared  # cd2映射路径
-      - /root/mnt/alist/123网盘:/123网盘:shared  # cd2映射路径
+      - /root/cd2/mnt/123网盘:/123网盘:shared  # cd2映射路径
+      #- /root/mnt/alist/123网盘:/123网盘:shared  # cd2映射路径
       - /strmstorage:/strm
       - /root/symedia/config:/app/config  # sa配置文件夹
       - /var/run/docker.sock:/var/run/docker.sock:ro     # Docker 宿主机通信
