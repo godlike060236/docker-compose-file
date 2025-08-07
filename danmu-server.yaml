@@ -14,7 +14,7 @@ services:
       - PUID=0
       - PGID=0
       # --- 数据库连接配置 ---
-      - DANMUAPI_DATABASE__HOST=mysql
+      - DANMUAPI_DATABASE__HOST=${host}
       - DANMUAPI_DATABASE__PORT=3306
       - DANMUAPI_DATABASE__NAME=danmuapi
       - DANMUAPI_DATABASE__USER=root
