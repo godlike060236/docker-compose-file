@@ -17,7 +17,7 @@ services:
       - DANMUAPI_DATABASE__HOST=${host}
       - DANMUAPI_DATABASE__PORT=3306
       - DANMUAPI_DATABASE__NAME=danmuapi
-      - DANMUAPI_DATABASE__USER=root
+      - DANMUAPI_DATABASE__USER=danmuapi
       - DANMUAPI_DATABASE__PASSWORD=guo1015666...
 
       
