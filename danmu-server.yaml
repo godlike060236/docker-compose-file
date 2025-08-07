@@ -1,33 +1,43 @@
+# docker-compose.app.yml
 version: '3.8'
 services:
   app:
     # 替换为您自己的Docker Hub用户名和镜像名，或使用本地构建
     image: l429609201/misaka_danmu_server:latest
-    container_name: danmu-server
+    container_name: danmu-server # 容器名称
     restart: unless-stopped
+    # 使用主机网络模式，容器将直接使用宿主机的网络。
+    # 这意味着容器内的 127.0.0.1 就是宿主机的 127.0.0.1。
+    # 应用将直接在宿主机的 7768 端口上可用，无需端口映射。
     networks:
       - net-bridge
     ports:
       - ${webport}:7768
     environment:
-      # --- 用户与组ID (用于运行时，与构建时匹配) ---
+      # --- 权限配置 ---
+      # 设置运行容器的用户和组ID，以匹配您宿主机的用户，避免挂载卷的权限问题。
       - PUID=0
       - PGID=0
+      - UMASK=022
+      # --- 服务配置 ---
+      # 应用将监听在宿主机的 0.0.0.0:7768 上
       # --- 数据库连接配置 ---
+    # 推荐使用host模式
+      # '127.0.0.1' 指向宿主机，因为我们使用了主机网络模式
       - DANMUAPI_DATABASE__HOST=${host}
       - DANMUAPI_DATABASE__PORT=3306
       - DANMUAPI_DATABASE__NAME=danmuapi
+      # !!! 重要：请使用您在步骤1中为数据库设置的用户名和密码 !!!
       - DANMUAPI_DATABASE__USER=danmuapi
-      - DANMUAPI_DATABASE__PASSWORD=guo1015666...
+      - DANMUAPI_DATABASE__PASSWORD=${password}
 
       
       # --- 初始管理员配置 ---
       - DANMUAPI_ADMIN__INITIAL_USER=admin
     volumes:
-      # 挂载配置文件目录，用于持久化日志等
+      # 挂载 config 目录以持久化日志和配置文件。
+      # 由于我们使用了 'user' 指令，容器进程将有权限写入此目录。
       - /root/danmu-server/config:/app/config
-
-
 networks:
   net-bridge:
     external: true
