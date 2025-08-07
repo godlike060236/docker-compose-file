@@ -7,6 +7,8 @@ services:
     restart: unless-stopped
     networks:
       - net-bridge
+    ports:
+      - ${webport}:7768
     environment:
       # --- 用户与组ID (用于运行时，与构建时匹配) ---
       - PUID=0
