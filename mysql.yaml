@@ -1,24 +1,32 @@
-version: '3'
+# docker-compose.mysql.yml
+version: '3.5'
 services:
-  mysql:                                            #mysql服务节点
-    image: mysql:5.7                                #mysql镜像，如果镜像容器没有会去自动拉取
-    container_name: mysql                           #容器的名称
-    command:                                        #构建容器后所执行的命令
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_unicode_ci
-      --lower-case-table-names=1    #忽略数据表明大小写 
-    restart: always                                 #跟随docker的启动而启动
-    environment:
-      MYSQL_ROOT_PASSWORD: ${password}                     #设置root帐号密码
-      TZ: Asia/Shanghai
-    ports:
-      - ${mysqlport}:3306
+  mysql:
+    image: mysql:8.1.0-oracle
+    restart: always
+    privileged: true
+    container_name: danmu-mysql
     volumes:
-      - /root/mysql/data:/var/lib/mysql           #数据文件挂载
-      - /root/mysql/conf.d:/etc/mysql/conf.d      #配置文件挂载
-      - /root/mysql/log:/var/log/mysql            #日志文件挂载
+      - /root/mysql/data:/var/lib/mysql
+      - /root/mysql/conf:/etc/mysql/conf.d
+      - /root/mysql/logs:/logs
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+    environment:
+      # !!! 重要：请务必替换为您的强密码 !!!
+      MYSQL_ROOT_PASSWORD: "${password}"
+      MYSQL_DATABASE: "danmuapi"
+      MYSQL_USER: "danmuapi"
+      MYSQL_PASSWORD: "${password_user}"
+      TZ: "Asia/Shanghai"
+    ports:
+      - "3306:3306"
     networks:
       - net-bridge
+
 networks:
   net-bridge:
     external: true
+
