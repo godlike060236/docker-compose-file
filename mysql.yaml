@@ -1,3 +1,5 @@
+# docker-compose.mysql.yml
+version: '3.5'
 services:
   mysql:
     image: mysql:8.1.0-oracle
@@ -13,10 +15,11 @@ services:
       --collation-server=utf8mb4_general_ci
       --explicit_defaults_for_timestamp=true
     environment:
-      MYSQL_ROOT_PASSWORD: ${password}
+      # !!! 重要：请务必替换为您的强密码 !!!
+      MYSQL_ROOT_PASSWORD: "${password}"
       MYSQL_DATABASE: "danmuapi"
       MYSQL_USER: "danmuapi"
-      MYSQL_PASSWORD: ${password_user}
+      MYSQL_PASSWORD: "${password_user}"
       TZ: "Asia/Shanghai"
     ports:
       - "3306:3306"
