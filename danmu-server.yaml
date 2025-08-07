@@ -23,7 +23,7 @@ services:
       - DANMUAPI_ADMIN__INITIAL_USER=admin
     volumes:
       # 挂载配置文件目录，用于持久化日志等
-      - root/danmu-server/config:/app/config
+      - /root/danmu-server/config:/app/config
 
 
 networks:
