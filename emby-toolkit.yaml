@@ -4,7 +4,6 @@ services:
   emby-toolkit:
     image: hbq0405/emby-toolkit:latest 
     container_name: emby-toolkit
-    network_mode: bridge
     ports:
       - "${webport}:5257"                               # 将容器的 5257 端口映射到宿主机的 5257 端口 (左边可以改成你希望的宿主机端口)
     volumes:
