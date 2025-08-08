@@ -7,6 +7,8 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Asia/Shanghai
+      - SETTINGS_ENCRYPTION_KEY=${encryption}
+      - DUPLICATI__WEBSERVICE_PASSWORD=${password}
     volumes:
       - /root/duplicati/config:/config
       - /root/duplicati/backups:/backups
