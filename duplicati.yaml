@@ -1,0 +1,21 @@
+version: "2.1"
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati
+    container_name: duplicati
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Shanghai
+    volumes:
+      - /root/duplicati/config:/config
+      - /root/duplicati/backups:/backups
+      - /strmstorage:/source
+    ports:
+      - ${webport}:8200
+    restart: unless-stopped
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
