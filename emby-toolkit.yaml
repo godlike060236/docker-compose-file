@@ -9,6 +9,7 @@ services:
     volumes:
       - /root/emby-toolkit/config:/config                      # 将宿主机的数据目录挂载到容器的 /config 目录
       - /root/emby-toolkit/tmdb:/tmdb                          # 映射神医本地TMDB目录，必须配置
+      - /strmstorage:/strm
     environment:
       - APP_DATA_DIR=/config                      # 持久化目录
       - TZ=Asia/Shanghai                          # 设置容器时区
