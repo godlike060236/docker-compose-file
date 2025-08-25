@@ -4,6 +4,8 @@ services:
     image: mysql:8.1.0-oracle
     container_name: danmu-mysql
     restart: unless-stopped
+    ports:
+      - ${port}:3306
     environment:
       # !!! 重要：请务必替换为您的强密码 !!!
       MYSQL_ROOT_PASSWORD: "${password}"
