@@ -1,43 +1,64 @@
-# docker-compose.app.yml
-version: '3.8'
+version: "3.8"
 services:
-  app:
-    # 替换为您自己的Docker Hub用户名和镜像名，或使用本地构建
-    image: l429609201/misaka_danmu_server:latest
-    container_name: danmu-server # 容器名称
+  mysql:
+    image: mysql:8.1.0-oracle
+    container_name: danmu-mysql
     restart: unless-stopped
-    # 使用主机网络模式，容器将直接使用宿主机的网络。
-    # 这意味着容器内的 127.0.0.1 就是宿主机的 127.0.0.1。
-    # 应用将直接在宿主机的 7768 端口上可用，无需端口映射。
+    environment:
+      # !!! 重要：请务必替换为您的强密码 !!!
+      MYSQL_ROOT_PASSWORD: "${password}"
+      MYSQL_DATABASE: "danmuapi"
+      MYSQL_USER: "danmuapi"
+      MYSQL_PASSWORD: "${password_user}"
+      TZ: "Asia/Shanghai"
+    volumes:
+      - /root/mysql/data:/var/lib/mysql
+      - /root/mysql/conf:/etc/mysql/conf.d
+      - /root/mysql/logs:/logs
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --explicit_defaults_for_timestamp=true
+    healthcheck:
+      #!!! 重要：-u和-p后不能有空格, 且密码需要与 MYSQL_PASSWORD 保持一致 !!! 这里启动检查的密码也要改
+      test: ["CMD-SHELL", "mysql -udanmuapi -p'${password}' -e \"SELECT 1\" danmuapi"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+
     networks:
       - net-bridge
-    ports:
-      - ${webport}:7768
+
+  danmu-app:
+    image: l429609201/misaka_danmu_server:latest
+    container_name: misaka-danmu-server
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
     environment:
-      # --- 权限配置 ---
       # 设置运行容器的用户和组ID，以匹配您宿主机的用户，避免挂载卷的权限问题。
       - PUID=0
       - PGID=0
       - UMASK=022
-      # --- 服务配置 ---
-      # 应用将监听在宿主机的 0.0.0.0:7768 上
       # --- 数据库连接配置 ---
-    # 推荐使用host模式
-      # '127.0.0.1' 指向宿主机，因为我们使用了主机网络模式
-      - DANMUAPI_DATABASE__HOST=${host}
-      - DANMUAPI_DATABASE__PORT=3306
-      - DANMUAPI_DATABASE__NAME=danmuapi
-      # !!! 重要：请使用您在步骤1中为数据库设置的用户名和密码 !!!
-      - DANMUAPI_DATABASE__USER=danmuapi
-      - DANMUAPI_DATABASE__PASSWORD=${password}
-
-      
+      - DANMUAPI_DATABASE__TYPE=mysql                         # 数据库类型
+      - DANMUAPI_DATABASE__HOST=${host}                         # 使用服务名
+      - DANMUAPI_DATABASE__PORT=3306                          # 端口号
+      - DANMUAPI_DATABASE__NAME=danmuapi                      # 数据库名称
+      # !!! 重要：请使用上面mysql容器相同的用户名和密码 !!!
+      - DANMUAPI_DATABASE__USER=danmuapi                      #数据库用户名
+      - DANMUAPI_DATABASE__PASSWORD=${password} #数据库密码
       # --- 初始管理员配置 ---
       - DANMUAPI_ADMIN__INITIAL_USER=admin
     volumes:
-      # 挂载 config 目录以持久化日志和配置文件。
-      # 由于我们使用了 'user' 指令，容器进程将有权限写入此目录。
       - /root/danmu-server/config:/app/config
+    ports:
+      - ${webport}:7768
+    networks:
+      - net-bridge
+
 networks:
   net-bridge:
     external: true
