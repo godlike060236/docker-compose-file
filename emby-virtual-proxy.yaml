@@ -20,3 +20,8 @@ services:
       # 环境变量：告诉管理服务如何访问同一容器内的代理服务
       - PROXY_CORE_URL=http://localhost:8999
     restart: unless-stopped
+    networks:
+      - net-bridge
+networks:
+  net-bridge:
+    external: true
