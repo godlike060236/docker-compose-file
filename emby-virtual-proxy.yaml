@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  emby-proxy:
+    image: pipi20xx/emby-virtual-proxy
+    container_name: emby-proxy
+    ports:
+      # 管理后台端口，左边为主机端口，右边为容器端口
+      - "${webport}:8001"
+      # 代理核心端口，左边为主机端口，右边为容器端口
+      - "${embyport}:8999"
+    volumes:
+      # 挂载配置文件和生成的封面目录，确保数据持久化
+      - /root/emby-virtual-proxy/config:/app/config
+      # 挂载Docker sock，允许后台通过API重启服务
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      # 环境变量：告诉管理服务要重启的容器名（即自身）
+      - PROXY_CONTAINER_NAME=emby-proxy
+      # 环境变量：告诉管理服务如何访问同一容器内的代理服务
+      - PROXY_CORE_URL=http://localhost:8999
+    restart: unless-stopped
