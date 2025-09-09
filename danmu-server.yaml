@@ -5,7 +5,7 @@ services:
     container_name: danmu-postgres
     restart: unless-stopped
 	ports:
-      - '${pgport}:5432'
+      - ${pgport}:5432
     environment:
       # !!! 重要：请务必替换为您的强密码 !!!
       POSTGRES_PASSWORD: "${password}"               #数据库密码
