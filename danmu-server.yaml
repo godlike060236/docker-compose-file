@@ -3,8 +3,8 @@ services:
   postgres:
     image: postgres:16
     container_name: danmu-postgres
-    restart: unless-stopped
-	ports:
+	restart: unless-stopped
+    ports:
       - ${pgport}:5432
     environment:
       # !!! 重要：请务必替换为您的强密码 !!!
