@@ -1,66 +1,58 @@
 version: "3.8"
 services:
-  mysql:
-    image: mysql:8.1.0-oracle
-    container_name: danmu-mysql
+  postgres:
+    image: postgres:16
+    container_name: danmu-postgres
     restart: unless-stopped
-    ports:
-      - ${port}:3306
+	ports:
+      - '${pgport}:5432'
     environment:
       # !!! 重要：请务必替换为您的强密码 !!!
-      MYSQL_ROOT_PASSWORD: "${password}"
-      MYSQL_DATABASE: "danmuapi"
-      MYSQL_USER: "danmuapi"
-      MYSQL_PASSWORD: "${password_user}"
+      POSTGRES_PASSWORD: "${password}"               #数据库密码
+      POSTGRES_USER: "danmuapi"                                        #数据库用户名
+      POSTGRES_DB: "danmuapi"                                          #数据库名称
       TZ: "Asia/Shanghai"
     volumes:
-      - /root/mysql/data:/var/lib/mysql
-      - /root/mysql/conf:/etc/mysql/conf.d
-      - /root/mysql/logs:/logs
-    command:
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_general_ci
-      --explicit_defaults_for_timestamp=true
+      - /root/danmu-server/db-data:/var/lib/postgresql/data
     healthcheck:
-      #!!! 重要：-u和-p后不能有空格, 且密码需要与 MYSQL_PASSWORD 保持一致 !!! 这里启动检查的密码也要改
-      test: ["CMD-SHELL", "mysql -udanmuapi -p'${password}' -e \"SELECT 1\" danmuapi"]
+      test: ["CMD-SHELL", "pg_isready -U danmuapi -d danmuapi"]
       interval: 5s
       timeout: 3s
       retries: 5
       start_period: 30s
-
     networks:
       - net-bridge
 
   danmu-app:
     image: l429609201/misaka_danmu_server:latest
-    container_name: misaka-danmu-server
+    container_name: danmu-server
     restart: unless-stopped
     depends_on:
-      mysql:
+      postgres:
         condition: service_healthy
     environment:
       # 设置运行容器的用户和组ID，以匹配您宿主机的用户，避免挂载卷的权限问题。
       - PUID=0
       - PGID=0
-      - UMASK=022
+      - UMASK=000
       # --- 数据库连接配置 ---
-      - DANMUAPI_DATABASE__TYPE=mysql                         # 数据库类型
-      - DANMUAPI_DATABASE__HOST=${host}                         # 使用服务名
-      - DANMUAPI_DATABASE__PORT=3306                          # 端口号
-      - DANMUAPI_DATABASE__NAME=danmuapi                      # 数据库名称
-      # !!! 重要：请使用上面mysql容器相同的用户名和密码 !!!
-      - DANMUAPI_DATABASE__USER=danmuapi                      #数据库用户名
-      - DANMUAPI_DATABASE__PASSWORD=${password} #数据库密码
+      - DANMUAPI_DATABASE__TYPE=postgresql                              # 数据库类型
+      - DANMUAPI_DATABASE__HOST=postgres                                # 使用服务名
+      - DANMUAPI_DATABASE__PORT=54325                                    # 数据库端口
+      - DANMUAPI_DATABASE__NAME=danmuapi                                # 数据库名称
+      # !!! 重要：请使用上面postgres容器相同的用户名和密码 !!!
+      - DANMUAPI_DATABASE__USER=danmuapi                                # 数据库用户名    
+      - DANMUAPI_DATABASE__PASSWORD=${password}      # 数据库密码
       # --- 初始管理员配置 ---
       - DANMUAPI_ADMIN__INITIAL_USER=admin
     volumes:
       - /root/danmu-server/config:/app/config
     ports:
-      - ${webport}:7768
+      - "${webport}:7768"
+
     networks:
       - net-bridge
 
 networks:
   net-bridge:
-    external: true
+    driver: bridge
