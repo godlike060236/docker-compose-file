@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres:16
     container_name: danmu-postgres
-	  restart: unless-stopped
+	restart: unless-stopped
     ports:
       - ${pgport}:5432
     environment:
