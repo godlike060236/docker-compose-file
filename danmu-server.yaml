@@ -37,8 +37,8 @@ services:
       - UMASK=000
       # --- 数据库连接配置 ---
       - DANMUAPI_DATABASE__TYPE=postgresql                              # 数据库类型
-      - DANMUAPI_DATABASE__HOST=postgres                                # 使用服务名
-      - DANMUAPI_DATABASE__PORT=${pgport}                                  # 数据库端口
+      - DANMUAPI_DATABASE__HOST=danmu-postgres                                # 使用服务名
+      - DANMUAPI_DATABASE__PORT=5432                                 # 数据库端口
       - DANMUAPI_DATABASE__NAME=danmuapi                                # 数据库名称
       # !!! 重要：请使用上面postgres容器相同的用户名和密码 !!!
       - DANMUAPI_DATABASE__USER=danmuapi                                # 数据库用户名    
