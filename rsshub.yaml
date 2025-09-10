@@ -28,8 +28,8 @@ services:
     restart: always # marked
     ulimits: # marked
       core: # marked
-      hard: 0 # marked
-      soft: 0 # marked
+        hard: 0 # marked
+        soft: 0 # marked
     healthcheck: # marked
       test: ["CMD", "curl", "-f", "http://localhost:3000/pressure"] # marked
       interval: 30s # marked
