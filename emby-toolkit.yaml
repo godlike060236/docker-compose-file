@@ -29,7 +29,7 @@ services:
       - DOCKER_IMAGE_NAME=hbq0405/emby-toolkit:latest
     restart: unless-stopped
     depends_on:                                   # 确保主程序只在数据库健康检查通过后才启动 
-      db:
+      postgres:
         condition: service_healthy
   # --- 2. PostgreSQL 数据库服务 ---
   postgres:
