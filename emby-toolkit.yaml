@@ -6,7 +6,7 @@ services:
     image: hbq0405/emby-toolkit:latest 
     container_name: emby-toolkit
     networks:
-      - net-bridge	# 网络模式
+      - net-bridge
     ports:
       - "${webport}:5257"                               # 管理端口
     volumes:
