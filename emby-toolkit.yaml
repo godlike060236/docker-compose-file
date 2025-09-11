@@ -9,6 +9,7 @@ services:
       - net-bridge
     ports:
       - "${webport}:5257"                               # 管理端口
+      - "${vitrual}:8097" 
     volumes:
       - /root/emby-toolkit/config:/config                # 将宿主机的数据目录挂载到容器的 /config 目录
       - /strmstorage:/tmdb                          # 映射神医本地TMDB目录，非神医Pro用户可以留空
