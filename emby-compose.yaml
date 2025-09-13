@@ -1,7 +1,7 @@
 version: '3' 
 services:
   emby:
-    image: linuxserver/emby:4.8.11  # 使用最新版本的 lovechen/embyserver 镜像
+    image: xinjiawei1/emby_unlockd:4.8.11.0
     container_name: embymain             # 容器名称设置为 emby
     restart: always                    # 容器总是重新启动
     ports:
@@ -14,7 +14,6 @@ services:
       - /strmstorage:/strm
       - /etc/timezone:/etc/timezone   # 同步主机和容器的时区设置
       - /etc/localtime:/etc/localtime # 同步主机和容器的本地时间
-      - /root/embymain/crack/:/app/emby/system/ # 存放破解文件
     environment:
       - UID=0                         # 设置容器用户 ID 为 0 (通常是 root)
       - GID=0                         # 设置容器组 ID 为 0 (通常是 root)
