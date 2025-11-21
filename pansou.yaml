@@ -13,10 +13,6 @@ services:
       - ENABLED_PLUGINS=labi,zhizhen,shandian,duoduo,muou,wanou,hunhepan,jikepan,panwiki,pansearch,panta,qupansou,hdr4k,pan666,susu,thepiratebay,xuexizhinan,panyq,ouge,huban,cyg,erxiao,miaoso,fox4k,pianku,clmao,wuji,cldi,xiaozhang,libvio,leijing,xb6v,xys,ddys,hdmoli,yuhuage,u3c3,javdb,clxiong,jutoushe,sdso,xiaoji,xdyh,haisou,bixin,djgou,nyaa,xinjuc,aikanzy,qupanshe,xdpan,discourse,yunsou,qqpd,ahhhhfs,nsgame,gying,quark4k,quarksoo,sousou,ash
       - CACHE_ENABLED=true
       - CACHE_PATH=/app/data/cache
-      - AUTH_ENABLED=true
-      - AUTH_USERS=admin:${password}
-      - AUTH_TOKEN_EXPIRY=24
-      - AUTH_JWT_SECRET=${jwt}
     volumes:
       - /root/pansou:/app/data
     networks:
