@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mediahelper:
+    image: rongyunmu/mediahelp
+    container_name: mediahelper
+    restart: unless-stopped
+    ports:
+      - "${webport}:80"     # 网页访问端口
+      - "${backport}:8091"   # 后端服务端口
+    volumes:
+      - /root/mediahelper/db:/app/backend/db        # 数据库存储
