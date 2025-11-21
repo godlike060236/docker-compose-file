@@ -9,3 +9,5 @@ services:
       - "${backport}:8091"   # 后端服务端口
     volumes:
       - /root/mediahelper/db:/app/backend/db        # 数据库存储
+    environment:
+      - LICENSE_CODE=95e42903a6677bea7a8f95fa6e966c23
