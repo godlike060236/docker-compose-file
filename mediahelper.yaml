@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mediahelper:
-    image: rongyunmu/mediahelp
+    image: murongyun574/mh-private
     container_name: mediahelper
     restart: unless-stopped
     ports:
