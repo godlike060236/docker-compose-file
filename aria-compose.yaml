@@ -17,7 +17,7 @@ services:
     volumes:
       - /root/aria/aria2-config:/config
       - /root/aria/aria2-downloads:/downloads
-      - /root/aria/aria2-completed:/completed
+      - /root/downloads/speed:/completed
     ports:
       - 6800:6800
       - 6888:6888
