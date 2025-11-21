@@ -12,41 +12,11 @@ services:
       # 必须指定启用的插件，多个插件用逗号分隔
       - ENABLED_PLUGINS=labi,zhizhen,shandian,duoduo,muou,wanou,hunhepan,jikepan,panwiki,pansearch,panta,qupansou,hdr4k,pan666,susu,thepiratebay,xuexizhinan,panyq,ouge,huban,cyg,erxiao,miaoso,fox4k,pianku,clmao,wuji,cldi,xiaozhang,libvio,leijing,xb6v,xys,ddys,hdmoli,yuhuage,u3c3,javdb,clxiong,jutoushe,sdso,xiaoji,xdyh,haisou,bixin,djgou,nyaa,xinjuc,aikanzy,qupanshe,xdpan,discourse,yunsou,qqpd,ahhhhfs,nsgame,gying,quark4k,quarksoo,sousou,ash
       - CACHE_ENABLED=true
-      - CACHE_PATH=/app/cache
-      - CACHE_MAX_SIZE=100
-      - CACHE_TTL=60
-      - ASYNC_PLUGIN_ENABLED=true
-      - ASYNC_RESPONSE_TIMEOUT=4
-      - ASYNC_MAX_BACKGROUND_WORKERS=20
-      - ASYNC_MAX_BACKGROUND_TASKS=100
-      - ASYNC_CACHE_TTL_HOURS=1
-      # 认证配置（可选）
-      # - AUTH_ENABLED=true
-      # - AUTH_USERS=admin:admin123,user:pass456
-      # - AUTH_TOKEN_EXPIRY=24
-      # - AUTH_JWT_SECRET=your-secret-key-here
-      # 如果需要代理，取消下面的注释并设置代理地址
-      # - PROXY=socks5://proxy:7897
+      - CACHE_PATH=/app/data/cache
     volumes:
-      - /root/pansou/cache:/app/cache
+      - /root/pansou:/app/data
     networks:
       - net-bridge
-    healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8888/api/health"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
-
-  # 如果需要代理，取消下面的注释
-  # proxy:
-  #   image: ghcr.io/snail007/goproxy:latest
-  #   container_name: pansou-proxy
-  #   restart: unless-stopped
-  #   command: /proxy socks -p :7897
-  #   networks:
-  #     - pansou-network
-
 networks:
   net-bridge:
     external: true
