@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    networks:
+      - net-bridge
+    restart: always
+    user: "0:0"
+    ports:
+      - 7836:80
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - /:/files
+      - /root/filebrowser/filebrowser.db:/database.db
+      - /root/filebrowser/.filebrowser.json:/.filebrowser.json
+networks:
+  net-bridge:
+    external: true
