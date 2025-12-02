@@ -9,7 +9,7 @@ services:
     restart: always
     user: "0:0"
     ports:
-      - ${webport}:80
+      - "${webport}:80"
     environment:
       - TZ=Asia/Shanghai
     volumes:
