@@ -14,8 +14,8 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       - /:/srv
-      - /root/filebrowser/filebrowser.db:/database.db
-      - /root/filebrowser/settings.json:/config/settings.json
+      - /root/filebrowser/database.db:/etc/database.db
+      - /root/filebrowser/config.json:/etc/config.json
 networks:
   net-bridge:
     external: true
