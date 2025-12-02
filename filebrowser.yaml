@@ -13,9 +13,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - /:/files
+      - /:/srv
       - /root/filebrowser/filebrowser.db:/database.db
-      - /root/filebrowser/.filebrowser.json:/.filebrowser.json
+      - /root/filebrowser/settings.json:/config/settings.json
 networks:
   net-bridge:
     external: true
