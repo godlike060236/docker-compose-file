@@ -8,12 +8,17 @@ services:
       - PGID=0
       - UMASK_SET=022
       - RPC_SECRET=guo1015666...
-      - DISK_CACHE=64M
+      - DISK_CACHE=128M
       - IPV6_MODE=true
       - UPDATE_TRACKERS=true
       - CUSTOM_TRACKER_URL=
       - TZ=Asia/Shanghai
       - SPECIAL_MODE=move
+    logging:
+      driver: json-file
+      options:
+        max-size: 20m
+        max-file: 2
     volumes:
       - /root/aria/aria2-config:/config
       - /root/aria/aria2-downloads:/downloads
@@ -23,10 +28,6 @@ services:
       - 6888:6888
       - 6888:6888/udp
     restart: unless-stopped
-    logging:
-      driver: json-file
-      options:
-        max-size: 1m
     networks:
       - net-bridge
   AriaNg:
@@ -40,7 +41,8 @@ services:
     logging:
       driver: json-file
       options:
-        max-size: 1m
+        max-size: 20m
+        max-file: 2
     networks:
       - net-bridge
 networks:
