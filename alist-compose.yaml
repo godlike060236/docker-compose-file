@@ -2,15 +2,16 @@ version: '3.3'
 services:
   alist:
     image: 'openlistteam/openlist:latest'
-    container_name: alist
+    container_name: openlist
     volumes:
-      - '/root/alist:/opt/alist/data'
+      - '/root/alist:/opt/openlist/data'
     ports:
       - '${webport}:5244'
-      - 8003:8003
     user: '0:0'
     environment:
       - TZ=Asia/Shanghai
+      - UMASK=022
+      - OPENLIST_ADMIN_PASSWORD=${password}
     restart: unless-stopped
     networks:
       - net-bridge
