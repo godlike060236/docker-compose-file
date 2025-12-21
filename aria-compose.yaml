@@ -7,7 +7,7 @@ services:
       - PUID=0
       - PGID=0
       - UMASK_SET=022
-      - RPC_SECRET=guo1015666...
+      - RPC_SECRET=${rpc}
       - DISK_CACHE=128M
       - IPV6_MODE=true
       - UPDATE_TRACKERS=true
