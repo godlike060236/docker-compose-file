@@ -2,7 +2,7 @@ version: "2"
 services:
   qbittorrentee:
     image: linuxserver/qbittorrent
-    container_name: qbittorrentSpeed
+    container_name: qbittorrent
     environment:
       - PUID=0
       - PGID=0
@@ -16,6 +16,11 @@ services:
       - 41256:41256
       - 41256:41256/udp
       - 1233:1233
+    logging:
+      driver: json-file
+      options:
+        max-size: 30m
+        max-file: 2
     networks:
       - net-bridge
     restart: unless-stopped
