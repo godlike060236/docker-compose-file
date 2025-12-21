@@ -11,7 +11,15 @@ services:
       - PORT=7789
       - CONFIG=/config
       - TZ=Asia/Shanghai
-    image: wushuo894/ani-rss
+      - PUID=0
+      - PGID=0
+      - UMASK=022
+    image: wushuo894/ani-rss:latest
+    logging:
+      driver: json-file
+      options:
+        max-size: 30m
+        max-file: 2
     restart: always
     networks:
       - net-bridge
