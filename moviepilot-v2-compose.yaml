@@ -26,6 +26,7 @@ services:
       - AUTH_SITE=iyuu
       - IYUU_SIGN=IYUU4338Ta698600be53e28eeb1db11eebc2cfb70fd0446c3
       - SUPERUSER=admin
+      - SUPERUSER_PASSWORD=${superpass}
       - DB_TYPE=postgresql
       - DB_POSTGRESQL_HOST=${pgdbhost}
       - DB_POSTGRESQL_PORT=5432
