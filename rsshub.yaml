@@ -5,6 +5,7 @@ services:
     # * (consumes more disk space and memory) leave everything unchanged
     image: diygod/rsshub # or ghcr.io/diygod/rsshub
     restart: always
+    container_name: rsshub
     ports:
       - "${webport}:1200"
     environment:
@@ -23,6 +24,7 @@ services:
       - net-bridge
 
   browserless: # marked
+    container_name: browserless
     image: browserless/chrome # marked
     restart: always # marked
     ulimits: # marked
