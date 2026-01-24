@@ -12,6 +12,8 @@ services:
       - /root/danmu-api/config:/app/config    # config目录下需要创建.env
       - /root/danmu-api/.chche:/app/.cache    # 配置.chche目录，会将缓存实时保存在本地文件
     restart: unless-stopped
+    networks:
+      - net-bridge
 networks:
   net-bridge:
     external: true
