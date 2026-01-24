@@ -1,0 +1,17 @@
+services:
+  danmu-api:
+    image: logvar/danmu-api:latest
+    ports:
+      - "${webport}:9321"
+    # 热更新支持：挂载 config/.env 文件，修改后容器会自动重新加载配置（无需重启容器）
+    container_name: danmu-api
+    environment:
+      ADMIN_TOKEN: ${admintoken}
+      TOKEN: ${token}
+    volumes:
+      - /root/danmu-api/config:/app/config    # config目录下需要创建.env
+      - /root/danmu-api/.chche:/app/.cache    # 配置.chche目录，会将缓存实时保存在本地文件
+    restart: unless-stopped
+networks:
+  net-bridge:
+    external: true
