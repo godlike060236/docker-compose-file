@@ -20,7 +20,7 @@ services:
       - PUID=0                                 # 设置为你的用户ID，建议与宿主机用户ID保持一致
       - PGID=0                                 # 设置为DOCKER组ID (一键更新用，‘grep docker /etc/group’可以查询)
       - UMASK=000                                 # 设置文件权限掩码，建议022
-      - DB_HOST=emby-toolkit-db                        # 数据库服务的地址 
+      - DB_HOST=1Panel-postgresql-Q8aN            # 数据库服务的地址 
       - DB_PORT=5432                              # 数据库服务的端口 
       - DB_USER=embytoolkit                       # !!! (可选) 修改为你自己的数据库用户名
       - DB_PASSWORD=${password}                   # !!! (必填) 请修改为一个强密码 !!!
