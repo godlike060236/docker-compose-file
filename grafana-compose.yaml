@@ -11,6 +11,8 @@ services:
       - net-bridge
     environment:
       - TZ=Asia/Shanghai
+    volumes:
+      - /root/grafana/data:/var/lib/grafana
     restart: always
   loki:
     image: grafana/loki:2.9.2
