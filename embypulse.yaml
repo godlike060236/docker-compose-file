@@ -7,7 +7,8 @@ services:
     networks:
       - net-bridge
     ports:
-      - ${webport}:10307
+      - ${webport1}:10307
+      - ${webport2}:10308
     volumes:
       - ./config:/app/config
     environment:
