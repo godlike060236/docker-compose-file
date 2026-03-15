@@ -10,11 +10,9 @@ services:
       - ${webport}:10307
     volumes:
       - ./config:/app/config
-      - /root/embymain/config/data:/emby-data:ro
     environment:
       - TZ=Asia/Shanghai
-      - PLAYBACK_DATA_MODE=sqlite
-      - DB_PATH=/emby-data/playback_reporting.db
+      - PLAYBACK_DATA_MODE=api
 networks:
   net-bridge:
     external: true
