@@ -6,11 +6,15 @@ services:
     restart: unless-stopped
     networks:
       - net-bridge
+    ports:
+      - ${webport}:10307
     volumes:
       - ./config:/app/config
+      - /root/embymain/config/data:/emby-data:ro
     environment:
       - TZ=Asia/Shanghai
-      - PLAYBACK_DATA_MODE=api
+      - PLAYBACK_DATA_MODE=sqlite
+      - DB_PATH=/emby-data/playback_reporting.db
 networks:
   net-bridge:
     external: true
