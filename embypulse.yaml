@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  emby-pulse:
+    image: mp740429299/emby_manger:latest
+    container_name: emby-manger
+    restart: unless-stopped
+    networks:
+      - net-bridge
+    volumes:
+      - ./config:/app/config
+    environment:
+      - TZ=Asia/Shanghai
+      - PLAYBACK_DATA_MODE=api
+networks:
+  net-bridge:
+    external: true
