@@ -1,6 +1,6 @@
 services:
   mediawarp:
-    image: akimio/mediawarp:0.1.6
+    image: akimio/mediawarp:0.2.2
     container_name: MediaWarp
     restart: unless-stopped
     ports:
