@@ -32,7 +32,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-    logging: *default-logging
     restart: unless-stopped
 
   frontend:
@@ -49,5 +48,4 @@ services:
       # 当前后端与前端部署在同一个 docker compose 网络中时，不要改成宿主机映射端口。
       # 这里应始终使用容器内部访问地址，例如 http://backend:8000 。
       BACKEND_UPSTREAM: ${BACKEND_UPSTREAM:-http://backend:8000}
-    logging: *default-logging
     restart: unless-stopped
