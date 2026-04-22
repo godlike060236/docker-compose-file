@@ -14,6 +14,7 @@ services:
       - '3001:3001'
     volumes:
       - '/root/downloads:/downloads'
+      - '/root/zimuku/storage/downloads:/downloads/subtitles'
       - '/root/moviepilot-v2/config:/config:rw'
       - '/root/moviepilot-v2/core:/moviepilot/.cache/ms-playwright'
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
