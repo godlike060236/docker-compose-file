@@ -1,0 +1,53 @@
+services:
+  backend:
+    container_name: zimuku-subtitle-server-backend
+    image: ${BACKEND_IMAGE:-cynosure159/zimuku-subtitle-server-backend:latest}
+    init: true
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - ${ZIMUKU_STORAGE_BIND:-./storage}:/app/storage
+      - ${MEDIA_MOVIES_BIND:-./media/movies}:/media/movies:${MEDIA_MOVIES_MOUNT_MODE:-rw}
+      - ${MEDIA_TV_BIND:-./media/tv}:/media/tv:${MEDIA_TV_MOUNT_MODE:-rw}
+    environment:
+      TZ: ${TZ:-Asia/Shanghai}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      UVICORN_LOG_LEVEL: ${UVICORN_LOG_LEVEL:-INFO}
+      ZIMUKU_STORAGE_PATH: /app/storage
+      ZIMUKU_DATABASE_URL: ${ZIMUKU_DATABASE_URL:-}
+      ZIMUKU_DB_PATH: ${ZIMUKU_DB_PATH:-}
+      ZIMUKU_DOWNLOAD_PATH: ${ZIMUKU_DOWNLOAD_PATH:-}
+      ZIMUKU_TEMP_PATH: ${ZIMUKU_TEMP_PATH:-}
+      ZIMUKU_EXTRACTED_PATH: ${ZIMUKU_EXTRACTED_PATH:-}
+      ZIMUKU_BASE_URL: ${ZIMUKU_BASE_URL:-}
+      ZIMUKU_PROXY: ${ZIMUKU_PROXY:-}
+      ZIMUKU_LOG_FILE: ${ZIMUKU_LOG_FILE:-}
+      ZIMUKU_REQUEST_TIMEOUT_SECONDS: ${ZIMUKU_REQUEST_TIMEOUT_SECONDS:-}
+      ZIMUKU_REQUEST_MAX_RETRIES: ${ZIMUKU_REQUEST_MAX_RETRIES:-}
+      ZIMUKU_REQUEST_BACKOFF_SECONDS: ${ZIMUKU_REQUEST_BACKOFF_SECONDS:-}
+      ZIMUKU_REQUEST_MIN_INTERVAL_SECONDS: ${ZIMUKU_REQUEST_MIN_INTERVAL_SECONDS:-}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging: *default-logging
+    restart: unless-stopped
+
+  frontend:
+    container_name: zimuku-subtitle-server-frontend
+    image: ${FRONTEND_IMAGE:-cynosure159/zimuku-subtitle-server-frontend:latest}
+    init: true
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      TZ: ${TZ:-Asia/Shanghai}
+      # 当前后端与前端部署在同一个 docker compose 网络中时，不要改成宿主机映射端口。
+      # 这里应始终使用容器内部访问地址，例如 http://backend:8000 。
+      BACKEND_UPSTREAM: ${BACKEND_UPSTREAM:-http://backend:8000}
+    logging: *default-logging
+    restart: unless-stopped
