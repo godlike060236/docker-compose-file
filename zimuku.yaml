@@ -10,6 +10,9 @@ services:
       - ${MEDIA_MOVIES_BIND:-./media/movies}:/media/movies:${MEDIA_MOVIES_MOUNT_MODE:-rw}
       - ${MEDIA_TV_BIND:-./media/tv}:/media/tv:${MEDIA_TV_MOUNT_MODE:-rw}
     environment:
+      PUID: 0
+      PGID: 0
+      UMASK: 000
       TZ: ${TZ:-Asia/Shanghai}
       LOG_LEVEL: ${LOG_LEVEL:-INFO}
       UVICORN_LOG_LEVEL: ${UVICORN_LOG_LEVEL:-INFO}
