@@ -13,7 +13,7 @@ services:
       - ./config:/app/config
     environment:
       - TZ=Asia/Shanghai
-      - EMBY_HOST=http://embymain:8096
+      - EMBY_HOST=https://emby.taikong.de
       - EMBY_API_KEY=bb6bb8a178db4558837f3a02a2d06caf
 networks:
   net-bridge:
