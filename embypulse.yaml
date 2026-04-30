@@ -10,7 +10,7 @@ services:
       - ${webport1}:10307
       - ${webport2}:10308
     volumes:
-      - ./config:/app/config
+      - /root/emby-pulse/config:/app/config
     environment:
       - TZ=Asia/Shanghai
       - EMBY_HOST=https://emby.taikong.de
