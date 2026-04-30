@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   emby-pulse:
-    image: mp740429299/emby_manger:latest
-    container_name: emby-manger
+    image: zeyu8023/emby-stats:latest
+    container_name: emby-pulse
     restart: unless-stopped
     networks:
       - net-bridge
@@ -11,9 +11,10 @@ services:
       - ${webport2}:10308
     volumes:
       - ./config:/app/config
-    environment:
+environment:
       - TZ=Asia/Shanghai
-      - PLAYBACK_DATA_MODE=api
+      - EMBY_HOST=http://embymain:8096
+      - EMBY_API_KEY=bb6bb8a178db4558837f3a02a2d06caf
 networks:
   net-bridge:
     external: true
