@@ -1,7 +1,8 @@
 version: '3.8'
+
 services:
   emby-pulse:
-    image: zeyu8023/emby-stats:latest
+    image: zeyu8023/embypulse-pro:latest
     container_name: emby-manager
     restart: unless-stopped
     networks:
@@ -9,12 +10,19 @@ services:
     ports:
       - ${webport1}:10307
       - ${webport2}:10308
+    
     volumes:
-      - /root/emby-pulse/config:/app/config
+      - /root/emby-pulse/config:/workspace/config
+      - /root/emby-pulse/data:/workspace/data
+    
     environment:
-      - TZ=Asia/Shanghai
-      - EMBY_HOST=https://emby.taikong.de
-      - EMBY_API_KEY=bb6bb8a178db4558837f3a02a2d06caf
+      - TZ=Asia/Shanghai      
+      
+      # Emby 配置（本地账号和 Emby Host 必填其一）
+      - EMBY_HOST=${embyurl}
+      - EMBY_API_KEY=${api}
+      
+      # - FORCE_MIGRATE=1
 networks:
   net-bridge:
     external: true
