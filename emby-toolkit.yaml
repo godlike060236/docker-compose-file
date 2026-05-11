@@ -11,7 +11,7 @@ services:
       - "${webport}:5257"                               # 管理端口
     volumes:
       - /root/emby-toolkit/config:/config                # 将宿主机的数据目录挂载到容器的 /config 目录
-      - /strmstorage:/tmdb                          # 映射神医本地TMDB目录，非神医Pro用户可以留空
+      - /strmstorage:/strm                     # 映射神医本地TMDB目录，非神医Pro用户可以留空
       - /var/run/docker.sock:/var/run/docker.sock # 一键更新用，不需要可以不配置
     environment:
       - APP_DATA_DIR=/config                      # 持久化目录
