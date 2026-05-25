@@ -12,6 +12,7 @@ services:
     volumes:
       - /root/duplicati/config:/config
       - /root/duplicati/backups:/backups
+      - /root/downloads/speed:/speed
       - /strmstorage:/source
     ports:
       - ${webport}:8200
