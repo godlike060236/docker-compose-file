@@ -1,0 +1,11 @@
+services:
+  nextemby:
+    image: nextemby/nextemby:latest
+    container_name: nextemby
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+      - PORT=8091
+    volumes:
+      - /root/nextemby:/Config
