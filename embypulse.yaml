@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   emby-pulse:
-    image: zeyu8023/embypulse-pro:1.3.69
+    image: zeyu8023/embypulse-pro:1.3.80
     container_name: emby-manager
     restart: unless-stopped
     networks:
