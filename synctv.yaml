@@ -1,21 +1,22 @@
-version: '3.3'
 services:
   synctv:
-    image: 'synctvorg/synctv:latest'
-    container_name: synctv
-    restart: unless-stopped
-    ports:
-      - '${webport}:8080/tcp'
-      - '${webport}:8080/udp'
-    volumes:
-      - /root/synctv:/root/.synctv
+    image: synctvorg/synctv:${SYNCTV_IMAGE_TAG:-latest}
+    container_name: synctv-app
+    env_file:
+      - path: .env.synctv
+        required: true
     environment:
-      - PUID=0
-      - PGID=0
-      - UMASK=022
-      - TZ=Asia/Shanghai
+      - '/root/synctv/data:/data'
+    ports:
+      - "8080:8080"
+      - "1935:1935"
+      - "3478:3478/udp"
     networks:
       - net-bridge
+    volumes:
+      - synctv_data:/data
+    restart: unless-stopped
+
 networks:
   net-bridge:
     external: true
