@@ -2,7 +2,7 @@ version: "2"
 services:
   qbittorrentee:
     image: linuxserver/qbittorrent
-    container_name: qbittorrent
+    container_name: qbittorrentee
     environment:
       - PUID=0
       - PGID=0
