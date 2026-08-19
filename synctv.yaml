@@ -6,15 +6,15 @@ services:
       - path: .env.synctv
         required: true
     environment:
-      - '/root/synctv/data:/data'
+      - TZ=Asia/Shanghai
     ports:
-      - "8080:8080"
+      - "${webport}:8080"
       - "1935:1935"
       - "3478:3478/udp"
     networks:
       - net-bridge
     volumes:
-      - synctv_data:/data
+      - '/root/synctv/data:/data'
     restart: unless-stopped
 
 networks:
