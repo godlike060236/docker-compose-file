@@ -1,16 +1,19 @@
-version: "3.8"
+version: "3"
 services:
-  rtmp-hls:
-    image: alqutami/rtmp-hls:latest-alpine
-    container_name: rtmp-hls
+  nginx-rtmp:
+    image: alfg/nginx-rtmp
+    container_name: nginx-rtmp
     ports:
       - "${streamport}:1935"
       - "${webport}:8080"
+    volumes:
+      - /root/rtmp/nginx.conf:/etc/nginx/nginx.conf
+      - /root/rtmp/hls:/tmp/hls
     restart: always
-    environment:
-      - TZ=Asia/Shanghai
     networks:
       - net-bridge
+    environment:
+      - TZ=Asia/Shanghai
 networks:
   net-bridge:
     external: true
