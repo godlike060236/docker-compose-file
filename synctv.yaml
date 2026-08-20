@@ -10,7 +10,7 @@ services:
     ports:
       - "${webport}:8080"
       - "1935:1935"
-      - "3478:3478/udp"
+      - "3748:3478/udp"
     networks:
       - net-bridge
     volumes:
