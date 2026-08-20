@@ -12,7 +12,7 @@ services:
       --lt-cred-mech
       --fingerprint
       --realm=152.53.134.9
-      --user=test:123456
+      --user=${user}:${pwd}
       --external-ip=152.53.134.9
       --min-port=49152
       --max-port=51000
