@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  coturn:
+    environment:
+      - TZ=Asia/Shanghai
+    image: coturn/coturn
+    container_name: coturn
+    restart: always
+    network_mode: host
+    command: >
+      --log-file=stdout
+      --lt-cred-mech
+      --fingerprint
+      --realm=152.53.134.9
+      --user=test:123456
+      --external-ip=152.53.134.9
+      --min-port=49152
+      --max-port=51000
