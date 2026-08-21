@@ -7,7 +7,7 @@ services:
       - "${streamport}:1935"
       - "${webport}:8080"
     volumes:
-      - /root/rtmp/nginx.conf:/etc/nginx/nginx.conf
+      - /root/rtmp/nginx.conf:/etc/nginx/nginx.conf.template
       - /root/rtmp/hls:/tmp/hls
     restart: always
     networks:
